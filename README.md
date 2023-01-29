@@ -4,7 +4,8 @@ Packaging the app with keyring by PyInstaller breaks keyring functionality
 
 # Steps to repro
 
-- open repo in vscode in dev container
+- open repo in vscode in dev container 
+- same on Windows 10 host with latest Docker Desktop and Mac Air M1 with latest Docker Desktop
 - run `pip3 install -r requirement.txt`
 - run `python3 keyring_test.py`. Output:
 ```
