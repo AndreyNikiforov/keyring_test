@@ -1,6 +1,6 @@
-import pkgutil
 import keyring
-import keyrings.alt
+
+print(f"All backends: {keyring.backend.get_all_keyring()}")
 
 print(f"Keyring: {keyring.get_keyring()}")
 
