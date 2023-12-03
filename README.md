@@ -6,7 +6,7 @@ Packaging the app with keyring by PyInstaller breaks `keyring` functionality
 
 - open repo in vscode in dev container 
 - same on Windows 10 host with latest Docker Desktop and Mac Air M1 with latest Docker Desktop
-- run `pip3 install -r requirement.txt && python3 keyring_test.py`. Output (as expected):
+- run `pip3 install -r requirements.txt && python3 keyring_test.py`. Output (as expected):
 ```
 All backends: [<keyring.backends.fail.Keyring object at 0x7f8d1bf35310>, <keyring.backends.chainer.ChainerBackend object at 0x7f8d1bda78d0>, <PlaintextKeyring with no encyption v.1.0 at /home/vscode/.local/share/python_keyring/keyring_pass.cfg>]
 Keyring: keyrings.alt.file.PlaintextKeyring (priority: 0.5)
