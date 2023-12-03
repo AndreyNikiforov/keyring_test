@@ -30,25 +30,23 @@ all packages installed (`pip3 list`):
 ```
 Package                   Version
 ------------------------- -------
-altgraph                  0.17.3
-cffi                      1.15.1
-cryptography              39.0.0
-importlib-metadata        6.0.0
-jaraco.classes            3.2.3
+altgraph                  0.17.4
+cffi                      1.16.0
+cryptography              41.0.7
+jaraco.classes            3.3.0
 jeepney                   0.8.0
-keyring                   23.13.1
-keyrings.alt              4.2.0
-more-itertools            9.0.0
-pip                       22.3.1
+keyring                   24.3.0
+keyrings.alt              5.0.0
+more-itertools            10.1.0
+pip                       23.2.1
 pycparser                 2.21
-pyinstaller               5.7.0
-pyinstaller-hooks-contrib 2022.15
+pyinstaller               5.13.2
+pyinstaller-hooks-contrib 2023.10
 SecretStorage             3.3.3
-setuptools                65.5.0
-wheel                     0.38.4
-zipp                      3.12.0
+setuptools                68.2.2
+wheel                     0.41.3
 ```
-Docker Desktop v4.15.0
+Docker Desktop v4.25.2
 
 # Trials
 
@@ -298,7 +296,9 @@ keyring.errors.NoKeyringError: No recommended backend was available. Install a r
 [12660] Failed to execute script 'keyring_test' due to unhandled exception!
 ```
 
-# Workaround/Solution
+# Workaround/Solution pre v6
+
+Note: PyInstaller v6 still fails to produce working code
 
 ## with source code change
 
@@ -308,7 +308,7 @@ keyring.errors.NoKeyringError: No recommended backend was available. Install a r
 
 - use `--collect-all keyrings.alt --hidden-import pkgutil` params for pyinstaller produces output (as expected):
 ```
-All backends: [<keyring.backends.fail.Keyring object at 0x7f88614b1c50>, <PlaintextKeyring with no encyption v.1.0 at /home/vscode/.local/share/python_keyring/keyring_pass.cfg>, <keyring.backends.chainer.ChainerBackend object at 0x7f88614e4cd0>]
+All backends: [<PlaintextKeyring with no encyption v.1.0 at /home/vscode/.local/share/python_keyring/keyring_pass.cfg>, <keyring.backends.fail.Keyring object at 0x7f3b30b5b860>, <keyring.backends.chainer.ChainerBackend object at 0x7f3b313b6db0>]
 Keyring: keyrings.alt.file.PlaintextKeyring (priority: 0.5)
 Password: None
 ```
