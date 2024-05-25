@@ -32,23 +32,29 @@ Package                   Version
 ------------------------- -------
 altgraph                  0.17.4
 cffi                      1.16.0
-cryptography              41.0.7
-jaraco.classes            3.3.0
+cryptography              42.0.7
+gitdb                     4.0.11
+GitPython                 3.1.41
+jaraco.classes            3.4.0
+jaraco.context            5.3.0
+jaraco.functools          4.0.1
 jeepney                   0.8.0
-keyring                   24.3.0
-keyrings.alt              5.0.0
-more-itertools            10.1.0
-pip                       23.2.1
-pycparser                 2.21
-pyinstaller               5.13.2
-pyinstaller-hooks-contrib 2023.10
+keyring                   25.2.1
+keyrings.alt              5.0.1
+more-itertools            10.2.0
+packaging                 24.0
+pip                       24.0
+pycparser                 2.22
+pyinstaller               6.7.0
+pyinstaller-hooks-contrib 2024.6
 SecretStorage             3.3.3
-setuptools                68.2.2
-wheel                     0.41.3
+setuptools                69.0.3
+smmap                     5.0.1
+wheel                     0.42.0
 ```
 Docker Desktop v4.25.2
 
-# Trials
+# Trials pre v6
 
 ## `--hidden-import` params
 
@@ -315,5 +321,17 @@ Password: None
 pyinstaller gives warning during compile:
 ```
 2015 WARNING: Unable to find package for requirement jaraco.classes from package keyrings.alt.
+```
+adding `--onefile` to `pyinstaller` cmd gives the same correct result
+
+# Workaround/Solution v6+
+
+## with params to `pyinstaller`
+
+- use `pyinstaller -y keyring_test.py --collect-all keyrings.alt --hidden-import pkgutil --copy-metadata keyrings.alt && dist/keyring_test/keyring_test` (correct):
+```
+All backends: [<keyring.backends.fail.Keyring object at 0x7f4633911ee0>, <PlaintextKeyring with no encyption v.1.0 at /home/vscode/.local/share/python_keyring/keyring_pass.cfg>, <keyring.backends.chainer.ChainerBackend object at 0x7f4632d00a10>]
+Keyring: keyrings.alt.file.PlaintextKeyring (priority: 0.5)
+Password: None
 ```
 adding `--onefile` to `pyinstaller` cmd gives the same correct result
